@@ -1,3 +1,5 @@
-# CrabScare
+# Gnome Chase
 
-Work in progress - a Garry's Mod gamemode that will revolve around a team of players being chased around by a fast headcrab and being picked off one by one.
+Work in progress
+
+I wish I was joking but this is actually a gamemode about being hunted by gnomes
