@@ -1,0 +1,9 @@
+"crabscare"
+{
+	"base"	"base"
+	"title"	"CrabScare"
+	"maps"	"cs_office"
+	"menusystem"	"1"
+
+	"Settings"
+}
