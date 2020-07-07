@@ -4,74 +4,65 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 -- other scripts
-
 AddCSLuaFile("round_controller/cl_round_controller.lua")
 include("round_controller/sv_round_controller.lua")
 
-function getGnomeLimit(how_many_humans)
+AddCSLuaFile("round_controller/cl_lobby.lua")
+include("round_controller/sv_lobby.lua")
 
-	return math.floor((how_many_humans + 1) / 4)
+--team flags
+local TEAM_GNOME = 1
+local TEAM_HUMAN = 2
+
+
+function arrangeTeams(ply)
 
 end
 
 
-function GM:PlayerSpawn(ply)
+function GM:PlayerInitialSpawn(ply)
 
 	ply:SetMaxHealth(1) -- 1 hit kills
 
 	-- if gnomes aint full u a gnome, buddy
-	if #team.GetPlayers(1) < getGnomeLimit(#team.GetPlayers(2)) then
+	if #team.GetPlayers(TEAM_GNOME) < 0 then
 		print("you are a gnome")
 
-		ply:SetTeam(1)
+		ply:SetTeam(TEAM_GNOME)
 
 	else
 		print("you are a human")
 
-		ply:SetTeam(2)		
+		ply:SetTeam(TEAM_HUMAN)		
 
 	end
 
 
-	if ply:Team() == 1 then
+	if ply:Team() == TEAM_GNOME then
  
         ply:SetRunSpeed(1000)
 		ply:SetWalkSpeed(800)
 		ply:Give("weapon_crowbar")
  
-    elseif ply:Team() == 2 then
+    elseif ply:Team() == TEAM_GNOME then
  
         ply:SetRunSpeed(500)
 		ply:SetWalkSpeed(300)
-		ply:Give("weapon_gravitygun")
+		ply:Give("weapon_physcannon")
  
     end
 
 end
-
---[[function GM:PlayerLoadout( ply )
- 
-    if ply:Team() == 1 then
- 
-        ply:Give("weapon_crowbar")
- 
-    elseif ply:Team() == 2 then
- 
-        ply:Give("weapon_gravitygun")
- 
-    end
- 
-end]]
  
 function team_1( ply )
  
-    ply:SetTeam( 1 ) --Make the player join team 1
+    ply:SetTeam( TEAM_GNOME ) --Make the player join team 1
  
 end
  
 function team_2( ply )
  
-    ply:SetTeam( 2 ) --Make the player join team 2
+    ply:SetTeam( TEAM_HUMAN ) --Make the player join team 2
 
 end
  
